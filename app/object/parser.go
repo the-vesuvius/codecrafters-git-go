@@ -1,11 +1,25 @@
 package object
 
-import "strconv"
+import (
+	"crypto/sha1"
+	"fmt"
+	"strconv"
+)
 
 type Object struct {
 	Type    string
 	Size    int
 	Content string
+}
+
+func (o Object) String() string {
+	return fmt.Sprintf("%s %d\x00%s", o.Type, o.Size, o.Content)
+}
+
+func (o Object) Hash() string {
+	sha1Hasher := sha1.New()
+	sha1Hasher.Write([]byte(o.String()))
+	return fmt.Sprintf("%x", sha1Hasher.Sum(nil))
 }
 
 func Parse(rawContent []byte) (Object, error) {

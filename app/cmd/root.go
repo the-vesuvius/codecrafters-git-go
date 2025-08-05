@@ -13,8 +13,8 @@ var rootCmd = &cobra.Command{
 func Execute() error {
 
 	rootCmd.AddCommand(initCmd)
-
 	rootCmd.AddCommand(catFile)
+	rootCmd.AddCommand(hashObject)
 
 	return rootCmd.Execute()
 }
