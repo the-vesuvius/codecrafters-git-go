@@ -15,18 +15,18 @@ func GetFilePathFromHash(objectHash string) string {
 }
 
 func GetDecompressedFileContent(objectFilePath string) ([]byte, error) {
-	content, err := os.ReadFile(objectFilePath)
+	fileContent, err := os.ReadFile(objectFilePath)
 	if err != nil {
 		return nil, err
 	}
 
-	zlibReader, err := zlib.NewReader(bytes.NewReader(content))
+	zlibReader, err := zlib.NewReader(bytes.NewReader(fileContent))
 	if err != nil {
 		return nil, err
 	}
 	defer zlibReader.Close()
 
-	content, err = io.ReadAll(zlibReader)
+	content, err := io.ReadAll(zlibReader)
 	if err != nil {
 		return nil, err
 	}
