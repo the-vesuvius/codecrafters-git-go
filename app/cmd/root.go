@@ -15,6 +15,7 @@ func Execute() error {
 	rootCmd.AddCommand(initCmd)
 	rootCmd.AddCommand(catFile)
 	rootCmd.AddCommand(hashObject)
+	rootCmd.AddCommand(lsTree)
 
 	return rootCmd.Execute()
 }
